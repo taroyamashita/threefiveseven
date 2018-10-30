@@ -10,7 +10,7 @@ class Board extends Component {
             row2: [0,0,0,0,0], 
             row3: [0,0,0,0,0,0,0],
             activeRow: "",
-            activePlayer: ""
+            activePlayer: "Player1"
         }
         this.pieceClickHandler = this.pieceClickHandler.bind(this);
     }
@@ -25,6 +25,11 @@ class Board extends Component {
             console.log(newArray);
         } else {
             console.log('End move?');
+            if(this.state.activePlayer === "Player1"){
+                this.setState({activePlayer: "Player2"});
+            } else {
+                this.setState({activePlayer: "Player1"});
+            }
             this.setState({activeRow: ""});
         }   
     }
@@ -33,12 +38,13 @@ class Board extends Component {
         return(
             <div>
                 <p>Board Goes Here</p>
+                <p> Active Player is {this.state.activePlayer}</p>
                 <div className ="row">
                     {this.state.row1.map((element, index)=> { 
                         if(element === 0){ 
                             return <Piece value={element} row="row1" index={index} pieceClickHandler={this.pieceClickHandler}/>}
                         else {
-                            return <EmptyPiece />
+                            return <EmptyPiece/>
                         }    
                     })}
                 </div>
