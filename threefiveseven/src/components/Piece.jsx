@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 const Piece = (props) =>{
     return (
-        <button> I'm a Piece button </button>
+        <button onClick={()=> props.pieceClickHandler(props.value, props.row, props.index)}> I'm a Piece button </button>
     )
 
 }
