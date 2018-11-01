@@ -10,7 +10,8 @@ class Board extends Component {
             row2: [0,0,0,0,0], 
             row3: [0,0,0,0,0,0,0],
             activeRow: "",
-            activePlayer: "Player1"
+            activePlayer: "Player1",
+            piecesRemaining: 15
         }
         this.pieceClickHandler = this.pieceClickHandler.bind(this);
     }
@@ -37,9 +38,10 @@ class Board extends Component {
     render(){
         return(
             <div>
-                <p>Board Goes Here</p>
-                <p> Active Player is {this.state.activePlayer}</p>
-                <div className ="row">
+                <p> Active Player: {this.state.activePlayer}</p>
+                <p> Pieces left </p>
+                <div className ="board-container">
+                <div className ="row1">
                     {this.state.row1.map((element, index)=> { 
                         if(element === 0){ 
                             return <Piece value={element} row="row1" index={index} pieceClickHandler={this.pieceClickHandler}/>}
@@ -48,7 +50,7 @@ class Board extends Component {
                         }    
                     })}
                 </div>
-                <div className ="row">
+                <div className ="row2">
                     {this.state.row2.map((element, index)=> { 
                         if(element === 0){ 
                             return <Piece value={element} row="row2" index={index} pieceClickHandler={this.pieceClickHandler}/>}
@@ -57,7 +59,7 @@ class Board extends Component {
                         }    
                     })}
                 </div>
-                <div className ="row">
+                <div className ="row3">
                     {this.state.row3.map((element, index)=> { 
                         if(element === 0){ 
                             return <Piece value={element} row="row3" index={index} pieceClickHandler={this.pieceClickHandler}/>}
@@ -65,6 +67,7 @@ class Board extends Component {
                             return <EmptyPiece />
                         }    
                     })}
+                </div>
                 </div>
             </div>
         )
