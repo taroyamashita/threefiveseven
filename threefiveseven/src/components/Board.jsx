@@ -16,12 +16,36 @@ class Board extends Component {
         this.pieceClickHandler = this.pieceClickHandler.bind(this);
     }
 
+    remainingPieceCounter(){
+        let count = 0; 
+        for(var i = 0; i < this.state.row1.length; i++){
+            if(this.state.row1[i]===0){
+                count++
+            }
+        }
+        for(var i = 0; i < this.state.row2.length; i++){
+            if(this.state.row1[i]===0){
+                count++
+            }
+        }
+        for(var i = 0; i < this.state.row3.length; i++){
+            if(this.state.row1[i]===0){
+                count++
+            }
+        }
+        console.log(count);
+        return count;
+    }
+
     pieceClickHandler(value, row, index){
+       
+       console.log(this.state.piecesRemaining);
         if(this.state.activeRow === "") {
             this.setState({activeRow: row});
         } else if (this.state.activeRow === row){
             let newArray = this.state[row];
             newArray[index] = 1; 
+            this.setState({pieesRemaining: this.state.piecesRemaining--})
             this.setState({row: newArray});
             console.log(newArray);
         } else {
@@ -39,7 +63,7 @@ class Board extends Component {
         return(
             <div>
                 <p> Active Player: {this.state.activePlayer}</p>
-                <p> Pieces left </p>
+                <p> Pieces left: {this.state.piecesRemaining} </p>
                 <div className ="board-container">
                 <div className ="row1">
                     {this.state.row1.map((element, index)=> { 
